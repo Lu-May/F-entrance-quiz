@@ -12,7 +12,7 @@ class StudentList extends Component {
 
   componentDidMount() {
     this.getStudentList();
-    console.log(this.state.studentList)
+    
   }
 
   getStudentList = () => {
@@ -22,6 +22,22 @@ class StudentList extends Component {
         this.setState({ studentList: data });
       });
   };
+
+  onKeyDownchange(e) {
+    const  inputValue = e.target.value;
+    if (e.keyCode === 13) {
+        fetch('http://localhost:8080/student/add', { 
+            method: 'POST',
+            body: inputValue
+        })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ studentList: data });
+      });
+      e.target.value="";
+    }
+    this.componentDidMount();
+  }
 
   render() {
     return (
@@ -35,7 +51,7 @@ class StudentList extends Component {
               key={item.studentName}
             />
           ))}
-          <input type="text" placeholder="+ 添加学员" />
+          <input type="text" placeholder="+ 添加学员" onKeyDown={(e) => this.onKeyDownchange(e)}/>
         </section>
       </div>
     );
