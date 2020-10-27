@@ -1,0 +1,17 @@
+.group-list-container {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  h1 {
+    margin: 0;
+  }
+  
+  button {
+    background-color: #ea5455;
+    color: white;
+    border: 0;
+    width: 130px;
+    margin-top: 18px;
+    height: 40px;
+  }
